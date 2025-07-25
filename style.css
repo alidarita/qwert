@@ -1,0 +1,272 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', Arial, sans-serif;
+  background: #101014;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+
+#app {
+  background: #18181f;
+  border-radius: 16px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.45);
+  padding: 40px 32px;
+  min-width: 360px;
+  max-width: 500px;
+  width: 100%;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.6rem;
+}
+
+h3 {
+  font-size: 1.3rem;
+}
+
+p, label, .timer, .answers, ul, li, input, select {
+  color: #d1d5db;
+  transition: color 0.3s;
+}
+
+button, .answer-btn {
+  background: linear-gradient(90deg, #2323a7 0%, #4f8cff 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 28px;
+  font-size: 1.05rem;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.15s, color 0.3s;
+  box-shadow: 0 2px 8px rgba(79,140,255,0.10);
+  outline: none;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+button:hover, .answer-btn:hover {
+  background: linear-gradient(90deg, #3a3ad6 0%, #2563eb 100%);
+  transform: scale(1.06);
+  box-shadow: 0 4px 16px rgba(79,140,255,0.18);
+}
+button:active, .answer-btn:active {
+  background: linear-gradient(90deg, #18181f 0%, #174ea6 100%);
+  transform: scale(0.97);
+  box-shadow: 0 1px 4px rgba(79,140,255,0.12);
+}
+
+.theme-toggle {
+  margin-top: 16px;
+  margin-left: 12px;
+  padding: 12px 18px;
+  background: #23233a;
+  color: #f3f4fa;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 2px 8px rgba(79,140,255,0.08);
+  font-weight: 500;
+}
+.theme-toggle:hover {
+  background: #4f8cff;
+  color: #18181f;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0 16px 0;
+  border: 1px solid #23233a;
+  border-radius: 6px;
+  font-size: 1.05rem;
+  box-sizing: border-box;
+  background: #23233a;
+  color: #f3f4fa;
+  outline: none;
+  transition: border 0.2s, background 0.3s, color 0.3s;
+}
+input:focus, select:focus {
+  border: 1.5px solid #4f8cff;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: linear-gradient(90deg, #2323a7 0%, #4f8cff 100%);
+  color: #fff;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  cursor: pointer;
+  background-position: right 12px center;
+  background-repeat: no-repeat;
+  background-size: 12px;
+  box-shadow: 0 2px 8px rgba(79,140,255,0.10);
+  transition: background 0.2s, transform 0.15s, box-shadow 0.15s, color 0.3s;
+}
+select:hover {
+  background: linear-gradient(90deg, #3a3ad6 0%, #2563eb 100%);
+  transform: scale(1.06);
+  box-shadow: 0 4px 16px rgba(79,140,255,0.18);
+}
+select:active {
+  background: linear-gradient(90deg, #18181f 0%, #174ea6 100%);
+  transform: scale(0.97);
+  box-shadow: 0 1px 4px rgba(79,140,255,0.12);
+}
+
+/* custom arrow */
+select::-ms-expand { display: none; }
+select::after { content:''; }
+
+body.light-theme select {
+  background: linear-gradient(90deg, #4f8cff 0%, #2323a7 100%);
+  color: #fff;
+}
+body.light-theme select:hover {
+  background: linear-gradient(90deg, #2563eb 0%, #3a3ad6 100%);
+}
+body.light-theme select:active {
+  background: linear-gradient(90deg, #174ea6 0%, #18181f 100%);
+}
+
+.timer {
+  font-size: 1.2rem;
+  color: #ff4d4f;
+  margin-top: 16px;
+  text-align: center;
+}
+
+.answers {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+ul {
+  padding-left: 18px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: #18181f;
+}
+::-webkit-scrollbar-thumb {
+  background: #23233a;
+  border-radius: 8px;
+}
+
+/* ---------- Анимация фоновых пятен ---------- */
+
+/* нет декора для светлой темы */
+body.light-theme::after { display:none; }
+
+/* Анимационный градиентный фон для тёмной темы */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 20% 20%, #4f8cff 0%, transparent 60%),
+              radial-gradient(circle at 80% 50%, #ff0066 0%, transparent 60%),
+              radial-gradient(circle at 50% 80%, #00d084 0%, transparent 60%);
+  opacity: 0.25;
+  animation: move-bg 25s linear infinite;
+  z-index: -1;
+  transform: translate(-20%, -20%);
+}
+
+@keyframes move-bg {
+  0%   { transform: translate(-25%, -25%) scale(1); }
+  50%  { transform: translate(-35%, -15%) scale(1.1); }
+  100% { transform: translate(-25%, -25%) scale(1); }
+}
+
+/* В светлой теме фон однотонный без градиента */
+body.light-theme::before {
+  display:block;
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 15% 25%, #bae6ff 0%, transparent 60%),
+              radial-gradient(circle at 85% 40%, #ffd1e6 0%, transparent 60%),
+              radial-gradient(circle at 60% 85%, #caffd8 0%, transparent 60%);
+  opacity: 0.4;
+  animation: move-bg 30s linear infinite;
+  z-index: -1;
+  transform: translate(-20%, -20%);
+}
+
+/* Светлая тема */
+body.light-theme {
+  background: #f5f6fa;
+}
+body.light-theme #app {
+  background: #fff;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+body.light-theme h1, body.light-theme h2, body.light-theme h3 {
+  color: #2d3a4a;
+}
+body.light-theme p, body.light-theme label, body.light-theme .timer, body.light-theme .answers, body.light-theme ul, body.light-theme li, body.light-theme input, body.light-theme select {
+  color: #2d3a4a;
+}
+body.light-theme button, body.light-theme .answer-btn {
+  background: linear-gradient(90deg, #4f8cff 0%, #2323a7 100%);
+  color: #fff;
+}
+body.light-theme button:hover, body.light-theme .answer-btn:hover {
+  background: linear-gradient(90deg, #2563eb 0%, #3a3ad6 100%);
+  color: #fff;
+}
+body.light-theme button:active, body.light-theme .answer-btn:active {
+  background: linear-gradient(90deg, #174ea6 0%, #18181f 100%);
+  color: #fff;
+}
+body.light-theme .theme-toggle {
+  background: #e5e7ef;
+  color: #2d3a4a;
+}
+body.light-theme .theme-toggle:hover {
+  background: #4f8cff;
+  color: #fff;
+}
+body.light-theme input, body.light-theme select {
+  background: #f5f6fa;
+  color: #2d3a4a;
+  border: 1px solid #d1d5db;
+}
+body.light-theme input:focus, body.light-theme select:focus {
+  border: 1.5px solid #2563eb;
+}
+
+h1, h2, h3 {
+  color: #f3f4fa;
+  transition: color 0.3s;
+}

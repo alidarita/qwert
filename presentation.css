@@ -1,0 +1,122 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+:root {
+  --bg1: #0e0e12;
+  --bg2: #12161c;
+  --accent1: #3d8bfd;
+  --accent2: #845ef7;
+  --accent3: #f783ac;
+  --text: #f8f8f8;
+}
+
+/* Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  height: 100vh;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  background: var(--bg1);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* subtle moving gradient overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(120deg, var(--accent1), var(--accent2), var(--accent3));
+  opacity: 0.1;
+  pointer-events: none;
+  animation: moveBG 25s infinite alternate;
+}
+@keyframes moveBG {
+  0% { transform: scale(1) translate(0, 0); }
+  100% { transform: scale(1.3) translate(-10%, -6%); }
+}
+
+/* Slides */
+.slide {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 64px;
+  height: 100vh;
+  animation: fade 0.5s ease-in-out;
+  background: rgba(20, 22, 30, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
+}
+.slide.active { display: flex; }
+@keyframes fade {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.7px;
+  background: linear-gradient(90deg, var(--accent1), var(--accent2) 60%, var(--accent3));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+p {
+  font-size: 1.35rem;
+  line-height: 1.55;
+  max-width: 900px;
+}
+
+/* Navigation */
+nav {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  z-index: 10;
+}
+
+nav button {
+  background: linear-gradient(135deg, var(--accent1) 0%, var(--accent2) 50%, var(--accent3) 100%);
+  padding: 10px 24px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.25s, box-shadow 0.25s, opacity 0.25s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+nav button:hover:not(:disabled) {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+}
+
+nav button:disabled {
+  opacity: 0.35;
+  cursor: default;
+  box-shadow: none;
+}
+
+#slideTitle {
+  min-width: 180px;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #ddd;
+  text-transform: uppercase;
+} 
